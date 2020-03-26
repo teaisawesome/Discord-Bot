@@ -94,9 +94,7 @@ function deleteQuestFromFile(fs, logfile, id)
             obj.array.forEach(element => {
                 if(element.id == id)
                 {
-                    console.log('megtalaltam');
                     obj.array.splice(index, 1);
-                    console.log('toroltem');
                 }
                 index++;
             });
