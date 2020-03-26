@@ -30,6 +30,7 @@ module.exports = {
             else
             {
                 message.reply('Nincs ilyen azonosítójú quest!');
+		return -1;
             }
         }
     }
