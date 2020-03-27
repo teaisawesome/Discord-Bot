@@ -25,12 +25,11 @@ module.exports = {
             {
                 // törlés
                 deleteQuestFromFile(fs, logfile, args[0]);
-                message.reply('A(z) ' + args[0] + ' azonosítójú quest törölve lett! Törölte: ' + loguser);
+                message.channel.send(`A(z) ${args[0]} azonosítójú quest törölve lett! Törölte: ${loguser} Dátum: ${timestampToDate(message.createdTimestamp)}`);
             }
             else
             {
                 message.reply('Nincs ilyen azonosítójú quest!');
-		return -1;
             }
         }
     }
@@ -95,7 +94,9 @@ function deleteQuestFromFile(fs, logfile, id)
             obj.array.forEach(element => {
                 if(element.id == id)
                 {
+                    console.log('megtalaltam');
                     obj.array.splice(index, 1);
+                    console.log('toroltem');
                 }
                 index++;
             });
@@ -104,4 +105,15 @@ function deleteQuestFromFile(fs, logfile, id)
 			fs.writeFileSync(logfile, json);
 		}
 	});
+}
+
+function timestampToDate(timestamp){
+	var date = new Date(timestamp);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1 ;
+	var day = date.getDate();
+	var hours = date.getHours() + 1;
+	var min = date.getMinutes();
+	var str = year + "." + month + "." + day + " " + hours + ":" + min;
+	return str
 }
